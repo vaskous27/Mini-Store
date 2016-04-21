@@ -1,0 +1,22 @@
+<link href="../styles.css" rel="stylesheet">
+<div ng-controller='productsController'>
+
+<input type="text" ng-model="filter" placeholder="Filter">
+
+	<form>
+		<p><strong> Add a New Product </strong></p>
+		<p>Name: <input type= "text" ng-model='new_product.name' placeholder="name..."></p>
+		<p>Image(url): <input type="text" ng-model='new_product.img' accept="image/*"></p>
+		Description: <textarea ng-model='new_product.desc'></textarea>
+		<p>Initial Quantity: <input type="number" ng-model='new_product.qty'></p>	
+		<button ng-click="addProduct()">Create</button>
+	</form>
+	
+	<div ng-repeat="product in products | filter:filter">
+	<img ng-src='./img/{{product.img}}'>
+	<p>{{product.name}}</p>
+	<p>{{product.qty}} remaining</p>
+	</div>
+
+	<p><a href=''>show more...</a></p>
+</div>

@@ -1,0 +1,40 @@
+<link href="../styles.css" rel="stylesheet">
+<div ng-controller='ordersController'>
+	<div id="form">
+		<form>
+			<p><strong> Add a New Order </strong></p>
+			<p>Customer: 
+			<select ng-model='new_order.name'>
+          		<option ng-repeat ='customer in customers' >{{ customer.name }}</option>
+       		</select></p>
+			<p>Order:
+			<select ng-model='new_order.qty'>
+				<option value='1'>1</option>
+				<option value='2'>2</option>
+				<option value='3'>3</option>
+				<option value='4'>4</option>
+			</select></p>
+			<select ng-model='new_order.product' ng-options="product as product.name for product in products">
+			</select>
+			<button ng-click="addOrder()">Order</button>
+		</form>
+	</div>
+	
+	<input type="text" ng-model="filter" placeholder="Filter">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<th class='info'>Name</th>
+			<th class='info'>Products</th>
+			<th class='info'>Quantity</th>
+			<th class='info'>Date</th>
+		</thead>
+		<tbody ng-repeat="order in orders | filter:filter">
+			<tr class='danger'>
+				<td>{{order.name}}</td>
+				<td>{{order.product}}</td>
+				<td>{{order.qty}}</td>
+				<td>{{order.date | date: 'MMMM dd, yyyy' }}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>

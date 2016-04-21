@@ -1,0 +1,21 @@
+<link href="../styles.css" rel="stylesheet">
+<div ng-controller='dashboardController'>
+	<input type="text" ng-model="filter" placeholder="Filter">
+	<div id = 'products' ng-repeat="product in products | limitTo: 5 | filter:filter">
+			<p><img ng-src='./static/img/{{product.img}}'></p>
+			<p>{{product.name}}</p>
+			<p>{{product.qty}} remaining</p>
+		</div>
+
+	<h3> Recent Orders </h3>
+	<div ng-repeat="order in orders | limitTo: 5 | orderBy:'-date'">
+		<p>{{order.name}} purchased {{order.qty}} {{order.product}}...(<time am-time-ago="order.date"></time>)</p>
+	</div>
+	<a href='#/orders'>show more...</a>
+
+	<h3> New Customers </h3>
+	<div ng-repeat="customer in customers | limitTo: 5 | orderBy:'-date'">
+		<p>{{customer.name}} joined the store...(<time am-time-ago="customer.date"></time>)</p>
+	</div>
+	<a href='#/customers'>show more...</a>
+</div>
